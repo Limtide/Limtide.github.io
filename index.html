@@ -2,57 +2,118 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>独家：崔康熙正式卸任山东泰山主教练</title>
-    <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; }
-        .title { font-size: 24px; font-weight: bold; margin-bottom: 15px; }
-        .subtitle { color: #666; font-size: 14px; margin-bottom: 20px; }
-        .content img { width: 100%; margin: 15px 0; }
-        .quote { background: #f5f5f5; padding: 10px; border-left: 3px solid #ddd; margin: 15px 0; }
-        .section-title { font-size: 18px; color: #333; margin: 20px 0 10px; }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Limtide's Blog | 个人技术博客</title>
+    <meta name="description" content="欢迎来到我的个人博客，分享技术心得、生活感悟和学习笔记">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="title">【突发】崔康熙确认卸任山东泰山主教练，创队史最差战绩下课</div>
-    <div class="subtitle">记者 王浩然 发自济南 | 更新时间：2025-05-06 19:30</div>
-    
-    <div class="content">
-        <img src="https://placeholder.com/800x450" alt="崔康熙在泰山队执教画面">
-        
-        <p>在刚刚结束的俱乐部高层紧急会议后，山东泰山足球俱乐部官方宣布：<strong>崔康熙即日起不再担任一线队主教练职务</strong>。这一决定终结了持续三周的"下课"风波，也标志着中超最具争议的帅位更迭尘埃落定[6,7,8](@ref)。</p>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-brand">
+                <a href="index.html">Limtide's Blog</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">首页</a></li>
+                <li><a href="#posts">博客</a></li>
+                <li><a href="#about">关于</a></li>
+                <li><a href="#contact">联系</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
 
-        <div class="section-title">▍两大导火索引爆危机</div>
-        <ul>
-            <li>战绩崩盘：近5轮联赛仅获1胜，历史性败给升班马云南队[6](@ref)</li>
-            <li>管理失控：球员公开质疑训练方式，更衣室矛盾激化[7](@ref)</li>
-        </ul>
+    <main class="main">
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1>欢迎来到我的个人博客</h1>
+                <p>分享技术心得，记录学习历程，探讨编程世界</p>
+                <a href="#posts" class="cta-button">开始阅读</a>
+            </div>
+        </section>
 
-        <div class="quote">
-            "俱乐部感谢崔指导在2023赛季危难时刻的挺身而出，但现阶段我们需要新的战术理念重振球队。"<br>
-            ——山东泰山官方公告节选
+        <section id="posts" class="blog-posts">
+            <div class="container">
+                <h2>最新文章</h2>
+                <div class="posts-grid">
+                    <article class="post-card">
+                        <div class="post-meta">
+                            <time datetime="2024-11-12">2024年11月12日</time>
+                            <span class="post-category">技术分享</span>
+                        </div>
+                        <h3><a href="posts/first-post.html">我的第一篇博客文章</a></h3>
+                        <p>欢迎使用我的个人博客！这里记录着我的技术学习历程和一些有趣的发现...</p>
+                        <a href="posts/first-post.html" class="read-more">阅读全文</a>
+                    </article>
+
+                    <article class="post-card">
+                        <div class="post-meta">
+                            <time datetime="2024-11-10">2024年11月10日</time>
+                            <span class="post-category">编程技巧</span>
+                        </div>
+                        <h3><a href="posts/git-tips.html">Git实用技巧分享</a></h3>
+                        <p>分享一些在日常开发中常用的Git命令和技巧，帮助你更高效地进行版本控制...</p>
+                        <a href="posts/git-tips.html" class="read-more">阅读全文</a>
+                    </article>
+
+                    <article class="post-card">
+                        <div class="post-meta">
+                            <time datetime="2024-11-08">2024年11月8日</time>
+                            <span class="post-category">学习笔记</span>
+                        </div>
+                        <h3><a href="posts/jekyll-tutorial.html">使用Jekyll搭建GitHub Pages博客</a></h3>
+                        <p>详细介绍如何使用Jekyll静态网站生成器在GitHub Pages上搭建个人博客...</p>
+                        <a href="posts/jekyll-tutorial.html" class="read-more">阅读全文</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <div class="container">
+                <h2>关于我</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>你好！我是Limtide，一名热爱技术的开发者。这个博客是我分享技术心得、记录学习过程的地方。</p>
+                        <p>主要关注的技术领域包括：</p>
+                        <ul>
+                            <li>Web开发 (HTML, CSS, JavaScript)</li>
+                            <li>Python编程</li>
+                            <li>版本控制 (Git)</li>
+                            <li>静态网站生成 (Jekyll, Hugo)</li>
+                        </ul>
+                    </div>
+                    <div class="skills">
+                        <h3>技能标签</h3>
+                        <div class="skill-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">HTML/CSS</span>
+                            <span class="tag">Git</span>
+                            <span class="tag">Jekyll</span>
+                            <span class="tag">GitHub</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Limtide's Blog. 用❤️制作</p>
+            <div class="social-links">
+                <a href="https://github.com/Limtide" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="#" target="_blank" rel="noopener noreferrer">Twitter</a>
+                <a href="#" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </div>
         </div>
+    </footer>
 
-        <div class="section-title">▍违约金谜团与继任者猜想</div>
-        <p>据知情人士透露，双方经过48小时谈判达成解约协议：<strong>崔康熙放弃剩余年薪的60%</strong>，换取立即终止合同。潜在继任者名单包括前西班牙人主帅路易斯·加西亚、本土少壮派教练谢晖[8](@ref)。</p>
-
-        <div class="section-title">▍数据揭示执教轨迹</div>
-        <table border="1" cellpadding="5" style="width:100%; margin:15px 0; border-collapse: collapse;">
-            <tr><th>任期</th><th>胜率</th><th>关键事件</th></tr>
-            <tr><td>2023.5-2024.12</td><td>58%</td><td>足协杯决赛失利，错失双冠王</td></tr>
-            <tr><td>2025.1-2025.5</td><td>31%</td><td>创队史最长6轮不胜纪录</td></tr>
-        </table>
-        
-        <div class="section-title">▍球迷反应两极分化</div>
-        <p>在俱乐部官宣评论区，既有"早该下课"的批评声，也不乏"功过三七开"的理性声音。资深球迷协会代表张先生表示："他带我们走出过谷底，但固执的用人策略最终葬送了信任。"[6,7](@ref)</p>
-
-        <img src="https://placeholder.com/800x450" alt="泰山队球迷举标语抗议">
-        
-        <!-- Inserted HTML snippet for game link -->
-        <a target="_blank" href="https://zh.y8.com/games/towers_trap">
-            <img alt="Towers Trap" class="thumb playable" src="https://img.y8.com/cloud/y8-thumbs/51753/small.jpg" /><br>
-            Towers Trap<br>
-            开始游戏！
-        </a>
-    </div>
+    <script src="script.js"></script>
 </body>
 </html>
