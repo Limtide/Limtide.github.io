@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的第一篇博客文章 | Limtide's Blog</title>
+    <meta name="description" content="欢迎使用我的个人博客！这里记录着我的技术学习历程和一些有趣的发现">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .post-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .post-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .post-meta-info {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .post-content h2 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+        .post-content p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            color: #555;
+        }
+        .post-content ul, .post-content ol {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+        }
+        .post-content li {
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+        .back-to-home {
+            display: inline-block;
+            margin-top: 3rem;
+            padding: 10px 20px;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        .back-to-home:hover {
+            background: #2980b9;
+        }
+        .code-block {
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-brand">
+                <a href="../index.html">Limtide's Blog</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html#home">首页</a></li>
+                <li><a href="../index.html#posts">博客</a></li>
+                <li><a href="../index.html#about">关于</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <div class="post-header">
+        <div class="container">
+            <h1>我的第一篇博客文章</h1>
+            <div class="post-meta-info">
+                <time datetime="2024-11-12">2024年11月12日</time>
+                <span> | 分类: 技术分享</span>
+            </div>
+        </div>
+    </div>
+
+    <main class="post-content">
+        <h2>欢迎来到我的博客！</h2>
+        <p>这是我搭建的第一篇博客文章。在这个平台上，我希望能够分享我的技术学习历程、编程心得以及一些有趣的发现。作为一名热爱技术的开发者，我相信通过记录和分享，不仅可以帮助他人，也能让自己更好地理解和掌握知识。</p>
+
+        <h2>为什么开始写博客？</h2>
+        <p>开始写技术博客有以下几个原因：</p>
+        <ul>
+            <li><strong>知识巩固</strong>：通过写作来加深对技术概念的理解</li>
+            <li><strong>分享经验</strong>：帮助其他开发者避免我遇到的坑</li>
+            <li><strong>建立个人品牌</strong>：展示自己的技术能力和思考</li>
+            <li><strong>交流学习</strong>：与其他开发者进行技术交流，获得反馈</li>
+        </ul>
+
+        <h2>这个博客会分享什么内容？</h2>
+        <p>我计划在这个博客中分享以下类型的内容：</p>
+        <ol>
+            <li>编程教程和技术心得</li>
+            <li>项目开发经验总结</li>
+            <li>工具使用技巧和效率提升方法</li>
+            <li>技术书籍和资源的推荐</li>
+            <li>个人学习和成长记录</li>
+        </ol>
+
+        <h2>技术栈分享</h2>
+        <p>这个博客使用纯HTML、CSS和JavaScript构建，未来我计划迁移到Jekyll静态网站生成器，这样可以更好地管理博客文章，并且可以充分利用GitHub Pages的功能。</p>
+
+        <div class="code-block">
+            <!-- 代码示例 -->
+            function welcomeToBlog() {
+                const message = "欢迎来到我的技术博客！";
+                console.log(message);
+                return "希望你能在这里找到有用的内容";
+            }
+        </div>
+
+        <h2>未来计划</h2>
+        <p>在接下来的时间里，我计划：</p>
+        <ul>
+            <li>完善博客的功能和设计</li>
+            <li>迁移到Jekyll，添加更多的功能</li>
+            <li>定期发布高质量的技术文章</li>
+            <li>建立读者交流和反馈机制</li>
+        </ul>
+
+        <h2>结语</h2>
+        <p>感谢你阅读我的第一篇博客文章！如果你有任何问题或建议，欢迎随时与我交流。让我们一起在技术的道路上不断学习和成长！</p>
+
+        <a href="../index.html" class="back-to-home">← 返回首页</a>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Limtide's Blog. 用❤️制作</p>
+            <div class="social-links">
+                <a href="https://github.com/Limtide" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="#" target="_blank" rel="noopener noreferrer">Twitter</a>
+                <a href="#" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

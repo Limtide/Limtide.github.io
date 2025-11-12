@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>使用Jekyll搭建GitHub Pages博客 | Limtide's Blog</title>
+    <meta name="description" content="详细介绍如何使用Jekyll静态网站生成器在GitHub Pages上搭建个人博客">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .post-header {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .post-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .post-meta-info {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .post-content h2 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+        .post-content p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            color: #555;
+        }
+        .post-content ul, .post-content ol {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+        }
+        .post-content li {
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+        .back-to-home {
+            display: inline-block;
+            margin-top: 3rem;
+            padding: 10px 20px;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        .back-to-home:hover {
+            background: #2980b9;
+        }
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            position: relative;
+        }
+        .code-block::before {
+            content: attr(data-lang);
+            position: absolute;
+            top: 0.5rem;
+            right: 1rem;
+            background: #4a5568;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+        .tip-box {
+            background: #d1fae5;
+            border-left: 4px solid #10b981;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+        .warning-box {
+            background: #fee2e2;
+            border-left: 4px solid #ef4444;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+        .step-box {
+            background: #f3f4f6;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        .step-box h4 {
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+        .jekyll-config {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 1rem;
+            font-family: 'Courier New', monospace;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-brand">
+                <a href="../index.html">Limtide's Blog</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html#home">首页</a></li>
+                <li><a href="../index.html#posts">博客</a></li>
+                <li><a href="../index.html#about">关于</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <div class="post-header">
+        <div class="container">
+            <h1>使用Jekyll搭建GitHub Pages博客</h1>
+            <div class="post-meta-info">
+                <time datetime="2024-11-08">2024年11月8日</time>
+                <span> | 分类: 学习笔记</span>
+            </div>
+        </div>
+    </div>
+
+    <main class="post-content">
+        <h2>什么是Jekyll？</h2>
+        <p>Jekyll是一个简单的、博客感知的静态网站生成器。它将你的纯文本转换成静态网站和博客。Jekyll没有数据库，没有评论审核，也没有讨厌的软件更新安装。这是内容管理和网络技术的精华，让你的网站专注于真正重要的内容。</p>
+
+        <h2>为什么选择Jekyll + GitHub Pages？</h2>
+        <ul>
+            <li><strong>免费托管</strong>：GitHub Pages提供免费的静态网站托管服务</li>
+            <li><strong>自定义域名</strong>：可以绑定自己的域名</li>
+            <li><strong>HTTPS支持</strong>：自动提供SSL证书</li>
+            <li><strong>版本控制</strong>：通过Git管理网站内容</li>
+            <li><strong>Markdown支持</strong>：使用Markdown编写文章</li>
+            <li><strong>主题丰富</strong>：大量现成主题可供选择</li>
+            <li><strong>插件生态</strong>：丰富的插件扩展功能</li>
+        </ul>
+
+        <h2>准备工作</h2>
+        <p>在开始之前，你需要准备：</p>
+        <ul>
+            <li><a href="https://github.com" target="_blank">GitHub账号</a></li>
+            <li><a href="https://git-scm.com" target="_blank">Git</a>安装和配置</li>
+            <li><a href="https://www.ruby-lang.org" target="_blank">Ruby</a>环境（本地开发使用）</li>
+        </ul>
+
+        <h2>步骤一：创建GitHub仓库</h2>
+
+        <div class="step-box">
+            <h4>1. 创建仓库</h4>
+            <p>在GitHub上创建一个新仓库，仓库名称格式为：<code>username.github.io</code>，其中<code>username</code>是你的GitHub用户名。</p>
+        </div>
+
+        <div class="step-box">
+            <h4>2. 克隆仓库到本地</h4>
+            <div class="code-block" data-lang="bash">
+git clone https://github.com/username/username.github.io.git
+cd username.github.io
+            </div>
+        </div>
+
+        <h2>步骤二：Jekyll基础结构</h2>
+        <p>Jekyll网站的基本目录结构如下：</p>
+
+        <div class="code-block" data-lang="bash">
+username.github.io/
+├── _config.yml          # Jekyll配置文件
+├── _layouts/            # 布局模板
+│   ├── default.html
+│   ├── post.html
+│   └── page.html
+├── _posts/              # 博客文章
+│   └── 2024-11-08-welcome.md
+├── _includes/           # 可复用的代码片段
+├── _sass/               # Sass样式文件
+├── assets/              # 静态资源
+│   ├── css/
+│   ├── js/
+│   └── images/
+├── _site/               # Jekyll生成的网站（不要手动修改）
+├── index.html           # 首页
+└── about.md             # 关于页面
+        </div>
+
+        <h2>步骤三：配置文件</h2>
+        <p>创建<code>_config.yml</code>文件，这是Jekyll的核心配置文件：</p>
+
+        <div class="jekyll-config">
+# 网站基本信息
+title: My Jekyll Blog
+description: 欢迎来到我的博客
+baseurl: "" # 子路径，如果有则填写
+url: "https://username.github.io" # 你的网站URL
+
+# 作者信息
+author:
+  name: Your Name
+  email: your.email@example.com
+  github: username
+  twitter: username
+
+# 构建设置
+markdown: kramdown
+highlighter: rouge
+permalink: /:categories/:year/:month/:day/:title/
+
+# 插件
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# 排除文件
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+        </div>
+
+        <h2>步骤四：创建布局模板</h2>
+
+        <h4>1. 默认布局（_layouts/default.html）</h4>
+        <div class="code-block" data-lang="html">
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ site.title }} - {{ page.title }}</title>
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+</head>
+<body>
+    <header>
+        <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
+        <nav>
+            <a href="{{ '/' | relative_url }}">首页</a>
+            <a href="{{ '/about/' | relative_url }}">关于</a>
+        </nav>
+    </header>
+
+    <main>
+        {{ content }}
+    </main>
+
+    <footer>
+        <p>&copy; {{ 'now' | date: "%Y" }} {{ site.author.name }}.
+        Powered by <a href="https://jekyllrb.com">Jekyll</a>.</p>
+    </footer>
+</body>
+</html>
+        </div>
+
+        <h4>2. 文章布局（_layouts/post.html）</h4>
+        <div class="code-block" data-lang="html">
+---
+layout: default
+---
+
+<article class="post">
+    <header class="post-header">
+        <h1>{{ page.title }}</h1>
+        <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y年%m月%d日" }}</time>
+        {% if page.category %}
+        <span class="category">分类: {{ page.category }}</span>
+        {% endif %}
+    </header>
+
+    <div class="post-content">
+        {{ content }}
+    </div>
+
+    <footer class="post-footer">
+        <p>标签:
+        {% for tag in page.tags %}
+            <span class="tag">{{ tag }}</span>
+        {% endfor %}
+        </p>
+    </footer>
+</article>
+        </div>
+
+        <h2>步骤五：创建博客文章</h2>
+        <p>在<code>_posts</code>目录下创建Markdown文件，文件名格式为<code>YYYY-MM-DD-title.md</code>：</p>
+
+        <div class="code-block" data-lang="markdown">
+---
+layout: post
+title: "我的第一篇Jekyll博客"
+date: 2024-11-08 10:00:00 +0800
+category: 技术
+tags: [Jekyll, GitHub Pages, 博客]
+---
+
+# 欢迎来到我的博客
+
+这是使用Jekyll搭建的第一篇博客文章。Jekyll让博客管理变得非常简单！
+
+## Jekyll的优势
+
+- **简单易用**：使用Markdown编写文章
+- **静态网站**：加载速度快，安全性高
+- **免费托管**：GitHub Pages提供免费服务
+- **版本控制**：Git管理所有内容
+
+```ruby
+# 这是一个Ruby代码示例
+puts "Hello, Jekyll!"
+```
+
+## 开始你的Jekyll之旅
+
+现在就开始创建你的第一个Jekyll博客吧！
+        </div>
+
+        <h2>步骤六：本地开发</h2>
+
+        <div class="step-box">
+            <h4>1. 安装Jekyll</h4>
+            <div class="code-block" data-lang="bash">
+# 安装Bundler
+gem install bundler
+
+# 创建Gemfile
+bundle init
+
+# 在Gemfile中添加Jekyll
+echo 'gem "jekyll"' >> Gemfile
+
+# 安装依赖
+bundle install
+            </div>
+        </div>
+
+        <div class="step-box">
+            <h4>2. 启动本地服务器</h4>
+            <div class="code-block" data-lang="bash">
+# 启动开发服务器
+bundle exec jekyll serve
+
+# 或者使用包含草稿的模式
+bundle exec jekyll serve --drafts
+            </div>
+            <p>现在可以在浏览器中访问 <code>http://localhost:4000</code> 查看你的网站。</p>
+        </div>
+
+        <h2>步骤七：部署到GitHub Pages</h2>
+
+        <div class="step-box">
+            <h4>1. 提交代码</h4>
+            <div class="code-block" data-lang="bash">
+git add .
+git commit -m "Initial Jekyll blog"
+git push origin main
+            </div>
+        </div>
+
+        <div class="step-box">
+            <h4>2. 启用GitHub Pages</h4>
+            <p>在你的GitHub仓库中：</p>
+            <ol>
+                <li>进入Settings页面</li>
+                <li>在左侧菜单中找到Pages</li>
+                <li>在Source中选择"Deploy from a branch"</li>
+                <li>选择main分支和/(root)文件夹</li>
+                <li>点击Save</li>
+            </ol>
+        </div>
+
+        <div class="tip-box">
+            <strong>💡 提示：</strong>GitHub Pages会在几分钟内自动构建和部署你的网站。你可以访问 <code>https://username.github.io</code> 查看部署结果。
+        </div>
+
+        <h2>高级配置和技巧</h2>
+
+        <h3>1. 使用主题</h3>
+        <p>Jekyll有很多现成的主题可以使用：</p>
+        <div class="code-block" data-lang="bash">
+# 使用Minima主题（Jekyll默认主题）
+# 在_config.yml中添加
+theme: minima
+
+# 或者使用远程主题
+remote_theme: pages-themes/cayman@v0.2.0
+        </div>
+
+        <h3>2. 添加分页功能</h3>
+        <div class="jekyll-config">
+# 在_config.yml中添加分页配置
+paginate: 5
+paginate_path: "/page:num/"
+        </div>
+
+        <h3>3. 使用Collections</h3>
+        <p>Collections让你可以组织相关的内容：</p>
+        <div class="jekyll-config">
+collections:
+  projects:
+    output: true
+    permalink: /:collection/:name/
+        </div>
+
+        <h3>4. 自定义插件</h3>
+        <p>你可以创建自定义插件来扩展Jekyll功能：</p>
+        <div class="code-block" data-lang="ruby">
+# _plugins/my_plugin.rb
+module Jekyll
+  class MyGenerator < Generator
+    safe true
+    priority :low
+
+    def generate(site)
+      # 你的插件逻辑
+    end
+  end
+end
+        </div>
+
+        <h2>常用Jekyll命令</h2>
+        <div class="code-block" data-lang="bash">
+jekyll new myblog          # 创建新的Jekyll项目
+jekyll serve               # 启动开发服务器
+jekyll build               # 构建网站到_site目录
+jekyll clean               # 清理生成的文件
+jekyll doctor              # 检查网站是否有问题
+        </div>
+
+        <h2>故障排除</h2>
+
+        <h3>常见问题：</h3>
+        <ul>
+            <li><strong>页面无法加载</strong>：检查<code>_config.yml</code>中的URL配置</li>
+            <li><strong>样式不显示</strong>：确保CSS文件路径正确</li>
+            <li><strong>文章不显示</strong>：检查文件名格式和Front Matter</li>
+            <li><strong>构建失败</strong>：运行<code>jekyll doctor</code>检查问题</li>
+        </ul>
+
+        <div class="warning-box">
+            <strong>⚠️ 注意：</strong>GitHub Pages有一些限制，比如不允许使用某些插件。在生产环境中，最好只使用官方支持的插件。
+        </div>
+
+        <h2>总结</h2>
+        <p>通过这篇教程，你应该已经学会了如何使用Jekyll搭建GitHub Pages博客。Jekyll是一个非常强大的静态网站生成器，配合GitHub Pages可以让你免费托管个人博客。</p>
+
+        <p>接下来你可以：</p>
+        <ul>
+            <li>选择一个你喜欢的主题</li>
+            <li>自定义网站的样式和布局</li>
+            <li>开始编写你的博客文章</li>
+            <li>添加评论系统（如Disqus）</li>
+            <li>集成Google Analytics进行访问统计</li>
+        </ul>
+
+        <p>祝你博客搭建顺利！如果在过程中遇到问题，欢迎查阅[Jekyll官方文档](https://jekyllrb.com/docs/)获取更多信息。</p>
+
+        <a href="../index.html" class="back-to-home">← 返回首页</a>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Limtide's Blog. 用❤️制作</p>
+            <div class="social-links">
+                <a href="https://github.com/Limtide" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="#" target="_blank" rel="noopener noreferrer">Twitter</a>
+                <a href="#" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

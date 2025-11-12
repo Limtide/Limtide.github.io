@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git实用技巧分享 | Limtide's Blog</title>
+    <meta name="description" content="分享一些在日常开发中常用的Git命令和技巧，帮助你更高效地进行版本控制">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .post-header {
+            background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .post-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .post-meta-info {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .post-content h2 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+        .post-content p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            color: #555;
+        }
+        .post-content ul, .post-content ol {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+        }
+        .post-content li {
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+        .back-to-home {
+            display: inline-block;
+            margin-top: 3rem;
+            padding: 10px 20px;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        .back-to-home:hover {
+            background: #2980b9;
+        }
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            position: relative;
+        }
+        .code-block::before {
+            content: "bash";
+            position: absolute;
+            top: 0.5rem;
+            right: 1rem;
+            background: #4a5568;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+        .tip-box {
+            background: #d1fae5;
+            border-left: 4px solid #10b981;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+        .warning-box {
+            background: #fee2e2;
+            border-left: 4px solid #ef4444;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-brand">
+                <a href="../index.html">Limtide's Blog</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html#home">首页</a></li>
+                <li><a href="../index.html#posts">博客</a></li>
+                <li><a href="../index.html#about">关于</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <div class="post-header">
+        <div class="container">
+            <h1>Git实用技巧分享</h1>
+            <div class="post-meta-info">
+                <time datetime="2024-11-10">2024年11月10日</time>
+                <span> | 分类: 编程技巧</span>
+            </div>
+        </div>
+    </div>
+
+    <main class="post-content">
+        <h2>简介</h2>
+        <p>Git是现代软件开发中不可或缺的版本控制工具。在实际开发过程中，掌握一些实用的Git技巧可以大大提高我们的工作效率。今天我想和大家分享一些我在日常开发中经常使用的Git命令和技巧。</p>
+
+        <h2>基础配置优化</h2>
+        <p>首先，让我们配置一下Git的基本信息，这些配置会让你的Git使用体验更好：</p>
+
+        <div class="code-block">
+# 设置用户信息
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+
+# 设置默认分支名称
+git config --global init.defaultBranch main
+
+# 设置默认编辑器
+git config --global core.editor "code --wait"  # 使用VS Code
+
+# 设置自动换行处理
+git config --global core.autocrlf input  # Linux/Mac
+git config --global core.autocrlf true   # Windows
+        </div>
+
+        <div class="tip-box">
+            <strong>💡 提示：</strong>使用 <code>--global</code> 标志设置的配置会应用到所有Git仓库。如果你想为特定项目设置不同的配置，可以在项目目录中不使用 <code>--global</code> 标志。
+        </div>
+
+        <h2>常用别名设置</h2>
+        <p>为常用的Git命令设置别名可以节省大量时间：</p>
+
+        <div class="code-block">
+git config --global alias.st status
+git config --global alias.co checkout
+git config --global alias.br branch
+git config --global alias.ci commit
+git config --global alias.unstage 'reset HEAD --'
+git config --global alias.last 'log -1 HEAD'
+git config --global alias.visual '!gitk'
+git config --global alias.graph 'log --oneline --graph --decorate --all'
+git config --global alias.amend 'commit --amend --no-edit'
+        </div>
+
+        <h2>实用的分支管理技巧</h2>
+
+        <h3>1. 快速切换到上一个分支</h3>
+        <div class="code-block">
+git checkout -  # 切换到上一个分支
+git checkout -b new-branch  # 创建并切换到新分支
+        </div>
+
+        <h3>2. 查看分支历史</h3>
+        <div class="code-block">
+git branch -a  # 查看所有分支（包括远程分支）
+git branch -v  # 查看分支和最新的提交
+git branch --merged  # 查看已合并的分支
+git branch --no-merged  # 查看未合并的分支
+        </div>
+
+        <h3>3. 删除分支</h3>
+        <div class="code-block">
+git branch -d branch-name  # 删除已合并的本地分支
+git branch -D branch-name  # 强制删除本地分支
+git push origin --delete branch-name  # 删除远程分支
+        </div>
+
+        <h2>提交历史管理</h2>
+
+        <h3>1. 修改最后一次提交</h3>
+        <div class="code-block">
+# 如果只是想修改提交信息
+git commit --amend -m "新的提交信息"
+
+# 如果想添加文件到最后一次提交
+git add .
+git commit --amend --no-edit
+        </div>
+
+        <div class="warning-box">
+            <strong>⚠️ 警告：</strong>不要修改已经推送到远程仓库的提交历史，这会给其他开发者带来困扰。只有在本地开发阶段或者在个人分支上才使用这些命令。
+        </div>
+
+        <h3>2. 交互式rebase</h3>
+        <div class="code-block">
+# 修改最近3次提交
+git rebase -i HEAD~3
+
+# 在交互式rebase中可以使用：
+# pick: 使用这次提交
+# reword: 修改提交信息
+# edit: 修改提交内容
+# squash: 合并到前一次提交
+# fixup: 类似squash，但丢弃提交信息
+# drop: 删除这次提交
+        </div>
+
+        <h2>暂存区管理技巧</h2>
+
+        <h3>1. 部分暂存文件</h3>
+        <div class="code-block">
+git add -p  # 交互式暂存文件的部分修改
+        </div>
+
+        <h3>2. 暂存当前工作</h3>
+        <div class="code-block">
+git stash push -m "工作暂存描述"  # 暂存当前工作
+git stash list  # 查看所有暂存
+git stash apply stash@{0}  # 应用暂存但不删除
+git stash pop  # 应用最新暂存并删除
+git stash drop stash@{0}  # 删除指定暂存
+git stash clear  # 清空所有暂存
+        </div>
+
+        <h2>远程仓库操作</h2>
+
+        <h3>1. 查看远程仓库信息</h3>
+        <div class="code-block">
+git remote -v  # 查看所有远程仓库
+git remote show origin  # 查看origin的详细信息
+        </div>
+
+        <h3>2. 同步远程分支</h3>
+        <div class="code-block">
+git fetch origin  # 获取远程更新但不合并
+git pull origin main  # 获取并合并远程更新
+        </div>
+
+        <h2>查看差异的技巧</h2>
+
+        <div class="code-block">
+git diff  # 工作区与暂存区的差异
+git diff --staged  # 暂存区与最后一次提交的差异
+git diff HEAD  # 工作区与最后一次提交的差异
+git diff branch1..branch2  # 两个分支之间的差异
+git diff --name-only  # 只显示修改的文件名
+        </div>
+
+        <h2>实用的Git Hooks</h2>
+        <p>Git Hooks可以在特定事件发生时自动执行脚本。一些常用的Hooks包括：</p>
+
+        <ul>
+            <li><strong>pre-commit</strong>：在执行commit前运行，用于代码检查</li>
+            <li><strong>pre-push</strong>：在push前运行，用于运行测试</li>
+            <li><strong>post-merge</strong>：在merge后运行，用于更新依赖</li>
+        </ul>
+
+        <h2>性能优化技巧</h2>
+
+        <div class="code-block">
+# 对于大仓库，可以禁用某些功能来提高性能
+git config core.fsmonitor true  # 启用文件系统监视器
+
+# 浅克隆来加快克隆速度
+git clone --depth 1 repository-url  # 只克隆最新提交
+
+# 使用sparse-checkout只克隆需要的目录
+git sparse-checkout init --cone
+git sparse-checkout set directory-name
+        </div>
+
+        <h2>总结</h2>
+        <p>这些Git技巧只是冰山一角，但它们是我日常开发中最常用的一些功能。掌握这些技巧可以让你在使用Git时更加得心应手。记住，最好的学习方法是在实际项目中多加练习，不要害怕犯错，Git的很多操作都是可以撤销的。</p>
+
+        <h2>进一步学习</h2>
+        <p>如果你想深入学习Git，我推荐以下资源：</p>
+        <ul>
+            <li><a href="https://git-scm.com/book" target="_blank">Pro Git Book</a> - 官方权威指南</li>
+            <li><a href="https://learngitbranching.js.org/" target="_blank">Learn Git Branching</a> - 交互式学习工具</li>
+            <li><a href="https://ohshitgit.com/" target="_blank">Oh Shit, Git!</a> - Git问题解决方案</li>
+        </ul>
+
+        <a href="../index.html" class="back-to-home">← 返回首页</a>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Limtide's Blog. 用❤️制作</p>
+            <div class="social-links">
+                <a href="https://github.com/Limtide" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="#" target="_blank" rel="noopener noreferrer">Twitter</a>
+                <a href="#" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

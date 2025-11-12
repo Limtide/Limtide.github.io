@@ -1,0 +1,84 @@
+# Site settings
+title: Limtide's Blog
+description: 个人技术博客，分享技术心得、学习笔记和生活感悟
+baseurl: ""
+url: "https://limtide.github.io"
+author: Limtide
+email: limtide@example.com
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: /:categories/:year/:month/:day/:title/
+timezone: Asia/Shanghai
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-paginate
+
+# Pagination
+paginate: 5
+paginate_path: "/page:num/"
+
+# Collections
+collections:
+  posts:
+    output: true
+    permalink: /:categories/:year/:month/:day/:title/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: "Limtide"
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .idea/
+  - .git/
+  - .gitignore
+  - README.md
+
+# Include
+include:
+  - _pages
+
+# Sass settings
+sass:
+  sass_dir: _sass
+  style: compressed
+
+# Markdown Processors
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: false
+
+# Social links
+social:
+  github: https://github.com/Limtide
+  twitter:
+  linkedin:
+
+# Google Analytics (optional)
+google_analytics:
+
+# Disqus (optional)
+disqus:
+  shortname:
