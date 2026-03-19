@@ -1,3 +1,6 @@
+# Local IDE files
+.idea/
+
 # Site settings
 title: Limtide's Blog
 description: 个人技术博客，分享技术心得、学习笔记和生活感悟
